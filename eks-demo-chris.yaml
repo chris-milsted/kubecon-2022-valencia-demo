@@ -1,0 +1,70 @@
+kind: ClusterConfig
+apiVersion: eksctl.io/v1alpha5
+
+metadata:
+  name: chris-eks-demo-cluster
+  region: eu-west-1
+  version: "1.21"
+  tags: {owner: chris}
+
+iam:
+  withOIDC: true
+
+nodeGroups:
+  - name: Ubuntu2004-1a
+    amiFamily: Ubuntu2004
+    instanceType: i3en.xlarge
+    iam: 
+      withAddonPolicies:
+        ebs: true
+    availabilityZones:
+      - eu-west-1a
+    desiredCapacity: 2
+    ssh:
+      allow: true
+      publicKeyName: chris-fedora
+    volumeSize: 20
+    volumeType: gp2
+    preBootstrapCommands:
+    - "mkfs -t ext4 /dev/nvme1n1"
+    - "mkdir -p /var/lib/storageos"
+    - "mount /dev/nvme1n1 /var/lib/storageos"
+    
+  - name: Ubuntu2004-1b
+    amiFamily: Ubuntu2004
+    instanceType: i3en.xlarge
+    iam: 
+      withAddonPolicies:
+        ebs: true
+    availabilityZones:
+      - eu-west-1b
+    desiredCapacity: 2
+    ssh:
+      allow: true
+      publicKeyName: chris-fedora
+    volumeSize: 20
+    volumeType: gp2
+    preBootstrapCommands:
+    - "mkfs -t ext4 /dev/nvme1n1"
+    - "mkdir -p /var/lib/storageos"
+    - "mount /dev/nvme1n1 /var/lib/storageos"
+
+      
+  - name: Ubuntu2004-1c
+    amiFamily: Ubuntu2004
+    instanceType: i3en.xlarge
+    iam: 
+      withAddonPolicies:
+        ebs: true
+    availabilityZones:
+      - eu-west-1c
+    desiredCapacity: 2
+    ssh:
+      allow: true
+      publicKeyName: chris-fedora
+    volumeSize: 20
+    volumeType: gp2
+    preBootstrapCommands:
+    - "mkfs -t ext4 /dev/nvme1n1"
+    - "mkdir -p /var/lib/storageos"
+    - "mount /dev/nvme1n1 /var/lib/storageos"
