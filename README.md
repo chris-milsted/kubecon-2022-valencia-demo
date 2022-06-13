@@ -238,7 +238,7 @@ spec:
         app: storageos-cli
     spec:
       containers:
-      - image: storageos/cli:v2.6.0
+      - image: storageos/cli:v2.7.0
         command:
           - "/bin/sh"
           - "-c"
